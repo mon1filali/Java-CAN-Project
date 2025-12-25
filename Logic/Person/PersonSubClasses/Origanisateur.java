@@ -2,13 +2,14 @@ package Logic.Person.PersonSubClasses;
 
 import Logic.Person.Personne;
 
-public class Arbitre extends Personne {
+
+public class Origanisateur extends Personne {
     
-    public Arbitre(String nom, String nationalite) {
+    public Origanisateur(String nom, String nationalite) {
         super(nom, nationalite);
     }
 
     public String getPriorite() {
-        return "Arbitre";
+        return "Origanisateur";
     };
 }
