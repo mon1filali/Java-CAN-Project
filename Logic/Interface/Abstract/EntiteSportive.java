@@ -8,7 +8,7 @@ public abstract class EntiteSportive {
     protected static int compteur = 0;
     protected int id;
     protected String nom;
-    protected ArrayList<Match> affectationList; // the list of matches the team participated in. list of matches hosted in the stadium 
+    public ArrayList<Match> affectationList; // the list of matches the team participated in. list of matches hosted in the stadium 
 
     public EntiteSportive(String nom) {
         this.id = compteur;

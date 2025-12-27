@@ -43,5 +43,47 @@ public abstract class Personne {
             p.nationalite = newNationalite;
         }
         personnes.set(personneIndex, p);
+    }
+
+    public static int getCompteur() {
+        return compteur;
+    }
+
+    public static void setCompteur(int compteur) {
+        Personne.compteur = compteur;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNationalite() {
+        return nationalite;
+    }
+
+    public void setNationalite(String nationalite) {
+        this.nationalite = nationalite;
+    }
+
+    public ArrayList<Personne> getPersonnes() {
+        return personnes;
+    }
+
+    public void setPersonnes(ArrayList<Personne> personnes) {
+        this.personnes = personnes;
     };
+
+    
 }
