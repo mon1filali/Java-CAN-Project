@@ -1,5 +1,17 @@
-package Java-CAN-Project.classesCan;
+package classesCan.personne.sousClasses;
+import classesCan.personne.Personne;
+public class Arbitre extends Personne {
 
-public class Arbitre {
+    public Arbitre(String nom, String nationalité) {
+       super(nom, nationalité);
+    }
+
+
+    @Override
+    public String getPriorite() {
+        return "Arbitre";
+    }
+
+    
     
 }

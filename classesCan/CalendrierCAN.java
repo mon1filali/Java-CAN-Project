@@ -1,4 +1,4 @@
-package Java-CAN-Project.classesCan;
+package classesCan;
 
 public class CalendrierCAN {
     
