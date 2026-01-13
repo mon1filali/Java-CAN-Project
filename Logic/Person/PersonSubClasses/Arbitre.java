@@ -11,4 +11,8 @@ public class Arbitre extends Personne {
     public String getPriorite() {
         return "Arbitre";
     };
+
+    public String toString() {
+        return "Referee " + this.nom;
+    }
 }

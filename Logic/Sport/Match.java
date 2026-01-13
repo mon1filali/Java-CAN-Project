@@ -28,12 +28,12 @@ public class Match {
         this.stade = stade;
         this.arbitre = arbitre;
         this.creneau = creneau;
-        this.statut = MatchState.PENDING;
+        this.statut = MatchState.PROGRAMED;
         this.importance = importance;
     }
 
     public void changeStatut() {
-        if (this.statut == MatchState.PENDING && LocalDate.now().equals(this.creneau.date)) {
+        if (this.statut == MatchState.PROGRAMED && LocalDate.now().equals(this.creneau.date)) {
             if (LocalTime.now().isAfter(this.creneau.debut.plusMinutes(this.creneau.dureeMinutes))) {
                 this.statut = MatchState.FINISH;
             } else if(LocalTime.now().isAfter(this.creneau.debut)) {
@@ -64,5 +64,9 @@ public class Match {
 
     public void setCreneau(Creneau creneau) {
         this.creneau = creneau;
+    }
+
+    public String toString() {
+        return this.equipeA + " VS " + this.equipeB + " In stadium: " + this.stade + " At: " + this.creneau + " Refered By: " + this.arbitre + " current Status: " + this.statut.toString() + " Importance: " + this.importance;
     }
 }

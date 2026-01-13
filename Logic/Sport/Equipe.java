@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import Logic.Exceptions.ExceededNumberOfPlayersException;
+import Logic.Exceptions.DonneeInvalideException;
 import Logic.Interface.Abstract.EntiteSportive;
 import Logic.Person.PersonSubClasses.Joueur;
 import Logic.Sport.TimeHandler.Creneau;
@@ -15,15 +17,23 @@ public class Equipe extends EntiteSportive {
      */
     protected ArrayList<Joueur> players = new ArrayList<Joueur>(); // From what cited in the specifications document
 
-    public Equipe(String nom) {
-        super(nom);
+    // We did like this because java wont let us put the cod od throwing the exeception since it force the super to be first thing
+    private static String validateNom(String nom) throws DonneeInvalideException {
+        if (nom == null || nom.isEmpty()) {
+            throw new DonneeInvalideException("The name of the Team must be entered");
+        }
+        return nom;
     }
 
-    public void addPlayer(Joueur p) {
+    public Equipe(String nom) throws DonneeInvalideException {
+        super(validateNom(nom));
+    }
+
+    public void addPlayer(Joueur p) throws ExceededNumberOfPlayersException {
         if (players.size() <= 24) {
             players.add(p);
         } else {
-            System.out.println("Vous avez passer le limite des joueurs");
+            throw new ExceededNumberOfPlayersException("You already reached the limit of players in this team");
         }
     }
 
@@ -42,10 +52,11 @@ public class Equipe extends EntiteSportive {
         return isPlay;
     }
 
-    // This is going to be used to check if a a team could play in the creanau that is set foor a match or not
-    public boolean estDisponible(Match match) {
+    // This is going to be used to check if a a team could play in the creanau that
+    // is set for a match or not
+    public boolean estDisponible(Creneau creneau) {
         for (Match m : affectationList) {
-            if (m.creneau.isChevauchement(match)) {
+            if (m.creneau.isChevauchement(creneau)) {
                 return false;
             }
         }
@@ -59,5 +70,9 @@ public class Equipe extends EntiteSportive {
 
     public void addMatch(Match match) {
         this.affectationList.add(match);
+    }
+
+    public String toString() {
+        return "Team name: " + this.nom;
     }
 }

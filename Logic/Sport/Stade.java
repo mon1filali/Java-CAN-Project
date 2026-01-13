@@ -7,9 +7,9 @@ import Logic.Interface.Abstract.EntiteSportive;
 import Logic.Sport.TimeHandler.Creneau;
 
 public class Stade extends EntiteSportive implements Planifiable {
-    protected String ville;
-    protected int capacite;
-    protected String categorie;
+    public String ville;
+    public int capacite;
+    public String categorie;
 
     public Stade(String nom, String ville, int capacite, String categorie) {
         super(nom);
@@ -24,7 +24,7 @@ public class Stade extends EntiteSportive implements Planifiable {
         boolean isDisponible = true;
 
         for(int i = 0; i < affectationList.size(); i++) {
-            if(affectationList.get(i).creneau.date.equals(matchCrenau.date) && matchCrenau.debut.isAfter(affectationList.get(i).creneau.debut) && matchCrenau.debut.isBefore(affectationList.get(i).creneau.debut.plusMinutes(affectationList.get(i).creneau.dureeMinutes))) {
+            if(affectationList.get(i).creneau.date.equals(matchCrenau.date) && matchCrenau.debut.isAfter(affectationList.get(i).creneau.debut) && matchCrenau.debut.isBefore(affectationList.get(i).creneau.debut.plusMinutes(affectationList.get(i).creneau.dureeMinutes)) && affectationList.get(i).statut != MatchState.ANNULATED) {
                 if(matchCrenau.debut.equals(affectationList.get(i).creneau.debut) && matchCrenau.debut.equals(affectationList.get(i).creneau.debut.plusMinutes(affectationList.get(i).creneau.dureeMinutes))) {
                     isDisponible = false;
                 }
@@ -53,5 +53,9 @@ public class Stade extends EntiteSportive implements Planifiable {
     // Return all the matches played in the stad
     public ArrayList<Match> getAllMatches() {
         return this.affectationList;
+    }
+
+    public void addMatch(Match m) {
+        this.affectationList.add(m);
     }
 }

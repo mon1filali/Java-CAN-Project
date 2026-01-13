@@ -16,24 +16,22 @@ public class Creneau {
         this.dureeMinutes = dureeMinutes;
     }
 
-    public boolean isChevauchement(Match match) {
-        if(this.date.equals(match.creneau.date)) {
-            if(this.debut.equals(match.creneau.debut)) {
-                return false;
+    public boolean isChevauchement(Creneau creneau) {
+        if(this.date.equals(creneau.date)) {
+            if(this.debut.equals(creneau.debut)) {
+                return true;
             }
 
-            if(this.debut.isBefore(match.creneau.debut) && (this.debut.plusMinutes(this.dureeMinutes)).equals(match.creneau.debut)) {
-                return false;
+            if(this.debut.isBefore(creneau.debut) && (this.debut.plusMinutes(this.dureeMinutes)).isAfter(creneau.debut)) {
+                return true;
             }
 
-            if(this.debut.isAfter(match.creneau.debut) && match.creneau.debut.equals((this.debut.plusMinutes(this.dureeMinutes)))) {
-                return false;
+            if(this.debut.isAfter(creneau.debut) && creneau.debut.isBefore((this.debut.plusMinutes(this.dureeMinutes)))) {
+                return true;
             }
-
-            return true;
         }
 
-        return true;
+        return false;
     }
 
     public void changeDureeMinutes(int time) {
@@ -46,5 +44,9 @@ public class Creneau {
 
     public void changeTime(LocalTime newDebut) {
         this.debut = newDebut;
+    }
+
+    public String toString() {
+        return "Day: " + this.date + " start Time: " + this.debut;
     }
 }

@@ -1,0 +1,2 @@
+admin;1234;ORGANISATEUR
+guest;0000;VIEWER
